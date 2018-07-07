@@ -5,4 +5,19 @@ class CuisinesController < ApplicationController
         @recipes = @cuisine.recipes
     end
 
+    def new
+        @cuisine = Cuisine.new()
+    end
+
+    def create
+        @cuisine = Cuisine.new(params.require(:cuisine).permit(:name))
+        if @cuisine.save
+        flash[:notice] = 'Cozinha cadastrada com sucesso'
+        render 'show'
+        else
+        flash[:alert] = 'Não foi possível cadastar a cozinha'
+        render 'new'
+        end
+    end
+
 end

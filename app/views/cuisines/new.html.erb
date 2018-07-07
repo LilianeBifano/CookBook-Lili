@@ -1,0 +1,19 @@
+<h1>Cadastro de Cozinhas</h1>
+<p><%= alert %></p>
+
+<% @cuisine.errors.full_messages.each do |erro| %>
+    <p><%= erro %></p>
+<% end %>
+
+
+<%= form_for @cuisine do |f| %>
+
+    <div>
+      <%= f.label :name, "Nome" %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+    <%= f.submit 'Enviar' %>
+    </div>
+<% end %>
