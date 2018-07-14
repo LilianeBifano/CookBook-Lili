@@ -11,10 +11,15 @@ class RecipesController < ApplicationController
     end
 
     def create
-        @recipe = Recipe.new(recipe_params)
         @cuisines = Cuisine.all
-        @recipe.save
-        render "show"
+        @recipe = Recipe.new(recipe_params)
+        if @recipe.save
+            flash[:notice] = 'Receita cadastrada com sucesso'
+            redirect_to recipe_path(@recipe)
+        else
+            flash[:alert] = 'Não foi possível cadastrar a receita'
+            render 'new'
+        end
     end
 
     private
